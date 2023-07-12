@@ -1,5 +1,4 @@
 version: "3"
-
 services:
   java-microservices:
     build:
@@ -7,3 +6,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    volumes:
+      - ./app:/app
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=mydatabase
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
